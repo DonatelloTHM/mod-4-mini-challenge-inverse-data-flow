@@ -2,6 +2,7 @@ import React from 'react'
 
 class Filter extends React.Component {
 
+  
   render() {
     return (
       <div className="card">
@@ -13,14 +14,14 @@ class Filter extends React.Component {
               type="text"
               placeholder="Search By Tasting Notes..."
               value={this.props.search}
-              onChange={e => console.log(e.target.value) /* TODO: update search state in parent component */}
+              onChange={e => this.props.changeSearchState(e.target.value) /* TODO: update search state in parent component */}
             />
           </div>
           <label>
             4 Star Only <input
               type="checkbox"
               value={this.props.fourStarOnly}
-              onChange={e => console.log(e.target.checked) /* TODO: update fourStarOnly state in parent component */}
+              onChange={e => this.props.changeCheckedStated(e.target.checked) /* TODO: update fourStarOnly state in parent component */}
             />
           </label>
         </div>

@@ -8,7 +8,23 @@ class SpiceList extends React.Component {
     search: ""
   }
 
+//handles the returned search state from the callback ...
+  handleSearchState = (newSearchState) => {
+    this.setState({
+      search: newSearchState
+    })
+  }
+
+  //handles the returned four star checkbox state from the the callback that we sent to the child named Filter. I'm wondering if anyone named their child Filter haha
+  handleCheckedState = (newCheckedState) => {
+    this.setState({
+      fourStarOnly: newCheckedState
+    })
+  }
+  
+
   renderSpices() {
+    debugger
     return this.props.spices
       .filter(spice => this.state.fourStarOnly ? spice.rating >= 4 : true)
       .filter(spice => spice.notes.toLowerCase().includes(this.state.search.toLowerCase()))
@@ -20,7 +36,7 @@ class SpiceList extends React.Component {
   render() {
     return (
       <section className="spice-list">
-        <Filter search={this.state.search} fourStarOnly={this.state.fourStarOnly} />
+        <Filter search={this.state.search} changeSearchState={this.handleSearchState} fourStarOnly={this.state.fourStarOnly} changeCheckedStated={this.handleCheckedState} />
         {this.renderSpices()}
       </section>
     )
